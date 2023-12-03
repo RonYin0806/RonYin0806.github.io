@@ -1,5 +1,6 @@
 body{
     background-color: whitesmoke;
+    font-family: monospace;
 }
 #dropdown_btn:hover .dropdown{
     display: block;
