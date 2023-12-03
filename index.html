@@ -7,47 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.26/skrollr.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script>
-        $(function () {
-            var scrollFunc = function(e) {
-                var e = e || window.event;
-                if(e.wheelDelta) {   
-                    if(e.wheelDelta > 0) { 
-                        $('#navTop').addClass('nav_scrolling');
-                    }
-                    if(e.wheelDelta < 0) {
-                        $('#navTop').removeClass('nav_scrolling');
-                    }
-                }
-            } 
-            window.addEventListener('scroll', function () {
-                var introduction_Height = $("#introduction").height();
-                if ($(window).scrollTop() > introduction_Height) {
-                    window.addEventListener("wheel", scrollFunc);
-  
-                }else{
-                    window.removeEventListener("wheel", scrollFunc);
-                    $('#navTop').removeClass('nav_scrolling');
-
-                }
-            });
-            var uri = "https://myapi20231202211352.azurewebsites.net/api/Info";
-            var web = "HomePage";
-            $.ajax({
-                type:'Get',
-                url: uri,
-                data: JSON.stringify({id:web}),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    
-                },
-                error: function () {
-                    alert("修改失敗");
-                }
-            })
-        })
-    </script>
+    <script type="text/javascript" src="script.js"></script>
     <title>CHEN GUAN YIN</title>
 </head>
 <body>
@@ -82,7 +42,7 @@
                 <h1 >GUAN YIN</h1>
                 <h1><strong>CHEN</strong></h1>
             </div>
-            <div style="position: absolute;bottom: 5px;right: 10px;opacity: 0.7;font-size: small;">瀏覽人數：<span id="views">1</span></div>
+            <div style="position: absolute;bottom: 5px;right: 10px;opacity: 0.7;font-size: small;">瀏覽人數：<span id="views"></span></div>
         </section>
         <section id="AboutMe" style="background-color: whitesmoke;">
                 <div class="container">
