@@ -6,81 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.26/skrollr.js"></script>
-    <style>
-        section{
-            padding-top:70px;
-            position: relative;
-        }
-        article{
-            padding-top:70px;
-        }
-        section#introduction{
-            height: 80vh;
-            background-image:url('https://images.pexels.com/photos/1144176/pexels-photo-1144176.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-        .navbar{
-            border-bottom: 1px solid white;
-            transition: 0.7s;
-            font-weight: 600;
-            background: linear-gradient(335deg,gray 1%, transparent ,transparent);
-        }
-        .navbar a{
-            opacity: 0.7;
-        }
-        .navbar a:hover{
-            opacity: 1;
-        }
-        .nav_scrolling{
-            background: white;
-            border-color: rgba(0,0,0,.09);
-        }
-        .nav_scrolling a{  
-            color: black !important;
-        }
-        .content ul{
-            list-style: none;
-            line-height: 40px;
-        }
-        #progressBar{
-            position: sticky;
-            top: 60px;
-            z-index: 99;
-            float: right;
-            display: flex;
-            flex-direction: column;
-            align-content: flex-end;
-            flex-wrap: wrap;
-        }
-        #progressBar>a{
-            display: block;
-            right: 15px;
-            width: 15px;
-            height: 15px;
-            border:2px solid transparent;
-            border-radius: 50%;
-            background: white;
-            opacity: 0.5;
-            padding: 0;
-            margin-top:20px;
-        }
-        div#progressBar a:hover,
-        article#list_item_1:hover ~ div#progressBar a[href="#list_item_1"]{
-            opacity: 1 !important;
-        }
-        @media screen and (max-width: 768px){
-            nav#navTop a{
-                font-size: small;
-            }
-            section ul{
-                font-size: smaller;
-            }
-            #brand{
-                transform: translateX(0px) translateY(-5px) !important;
-            }
-        }
-    </style>
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <script>
         $(function () {
             var scrollFunc = function(e) {
@@ -92,19 +18,34 @@
                     if(e.wheelDelta < 0) {
                         $('#navTop').removeClass('nav_scrolling');
                     }
-                } 
-            }
+                }
+            } 
             window.addEventListener('scroll', function () {
                 var introduction_Height = $("#introduction").height();
                 if ($(window).scrollTop() > introduction_Height) {
                     window.addEventListener("wheel", scrollFunc);
+  
                 }else{
                     window.removeEventListener("wheel", scrollFunc);
                     $('#navTop').removeClass('nav_scrolling');
 
                 }
             });
-
+            var uri = "https://myapi20231202211352.azurewebsites.net/api/Info";
+            var web = "HomePage";
+            $.ajax({
+                type:'Get',
+                url: uri,
+                data: JSON.stringify({id:web}),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    
+                },
+                error: function () {
+                    alert("修改失敗");
+                }
+            })
         })
     </script>
     <title>CHEN GUAN YIN</title>
@@ -112,13 +53,24 @@
 <body>
     <nav id="navTop" class="navbar navbar-default navbar-expand navbar-light fixed-top" >
         <div class="container">
-            <div class="collapse navbar-collapse justify-content-end">
+            <div class="collapse navbar-collapse justify-content-between">
+                <a class="navbar-brand font-weight-bold text-white" href="https://Ronyin0806.github.io/index.html">&copy YIN</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#AboutMe">關於我 About Me</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="dropdown_btn">
                         <a class="nav-link text-white" href="#Portfolio">作品集 Portfolio</a>
+                        <div class="dropdown" style="display: none;">
+                            <ul>
+                                <li>
+                                    <a href="#">我的網頁</a>
+                                </li>
+                                <li>
+                                    <a href="#">movieS</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -130,6 +82,7 @@
                 <h1 >GUAN YIN</h1>
                 <h1><strong>CHEN</strong></h1>
             </div>
+            <div style="position: absolute;bottom: 5px;right: 10px;opacity: 0.7;font-size: small;">瀏覽人數：<span id="views">1</span></div>
         </section>
         <section id="AboutMe" style="background-color: whitesmoke;">
                 <div class="container">
@@ -170,19 +123,14 @@
                         <img class="d-none d-md-block" data-bottom-top="transform: translateY(20vh);opacity:0.2" data-center="transform: translateY(0vh);opacity:1" src="https://upload.wikimedia.org/wikipedia/zh/d/dd/Ming_Chuan_University.png">
                     </div>
                     <hr>
-                    <div>
-                        
-                    </div>
                 </div>
         </section>
-    
         <section id="Portfolio" style="background-color: darkslategrey ;display: flex;flex-direction: column-reverse;">
                 <article id="list_item_2">
                     <div class="row" data-bottom-top="transform: opacity:0.1" data-center="transform: opacity:1">
-    
                     </div>
                 </article>
-                <article id="list_item_1" data-bottom-top="transform: translateX(-100vw);opacity:0.2" data-center="transform: translatex(0vw);opacity:1">
+                <article class="article" id="list_item_1" data-bottom-top="transform: translateX(-100vw);opacity:0.2" data-center="transform: translatex(0vw);opacity:1" style="box-shadow: 12px 10px 20px 0px;">
                     <div class="container">
                         <div class="row">
                             <div id="carouselforbrand" class="carousel slide col-12 col-md-6" data-bs-ride="carousel">
@@ -211,9 +159,10 @@
                                 <div class="container">
                                     <hr>
                                     <h3>個人網頁</h3>
-                                    <div class="px-4 py-2 bg-light text-black" style="text-align: left;" >
-                                        <li>RWD</li>
-                                        <li>Bootstrap</li>
+                                    <div class="px-4 py-2 bg-light text-black" style="text-align: left;font-weight: 500;" >
+                                        <li>javascript / jquery</li>
+                                        <li>RWD / Bootstrap</li>
+                                        <li>Skrollr.js 微動畫</li>
                                     </div>
                                     <hr>
                                 </div>
@@ -237,9 +186,10 @@
             
         </section>
     </div>
-    
+
     
 </body>
+
 <script type="text/javascript">
     var s = skrollr.init();
 </script>
