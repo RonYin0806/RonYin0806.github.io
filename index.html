@@ -159,7 +159,13 @@
 
 <script type="text/javascript">
     var s = skrollr.init();
-    window.onload=function(){s.refresh()}
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                var targetId = anchor.getAttribute('href').substring(1);
+                scrollToElement(targetId);
+            });
+        });
 </script>
 
 </html>
