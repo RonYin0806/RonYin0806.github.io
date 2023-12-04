@@ -158,8 +158,22 @@
     $("#navTop a").bind("click",function(){
         var id=$(this).attr("data-href-id");
         var target_top = $("#"+id).offset().top;
-        s.setScrollTop(0,forec=false);
-        s.setScrollTop(target_top,force=true);
+        if(!s.isMobile()){
+            s.setScrollTop(target_top,force=true);
+        }
+        else{
+            var dif;
+            if(s.getScrollTop() > target_top){
+                dif = s.getScrollTop() + target_top;
+                s.setScrollTop(dif,force=true);
+            }
+            else{
+                if(s.getScrollTop() <= target_top){
+                dif = target_top - s.getScrollTop();
+                s.setScrollTop(dif,force=true);
+            }
+            }
+        }
     });
     
 </script>
