@@ -21,6 +21,16 @@ $(function () {
 
         }
     });
+
+    $("#navTop a").bind("click",function(){
+        var id=$(this).attr("data-href-id");
+        var target_top = $("#"+id).offset().top;
+        var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+        $body.animate({
+            scrollTop: target_top
+        }, 100);
+    });
+
     var uri = "https://myapi20231202211352.azurewebsites.net/api/Info";
     var web = "HomePage";
     uri = uri + "?id=" + web;
