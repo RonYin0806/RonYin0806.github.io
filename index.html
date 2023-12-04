@@ -10,17 +10,17 @@
     <script src="./script.js"></script>
     <title>CHEN GUAN YIN</title>
 </head>
-<body id="skrollr-body ">
+<body>
     <nav id="navTop" class="navbar navbar-default navbar-expand navbar-light fixed-top" >
         <div class="container">
             <div class="collapse navbar-collapse justify-content-between">
                 <a class="navbar-brand font-weight-bold text-white" href="https://Ronyin0806.github.io/">&copy YIN</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#" data-href-id="AboutMe">關於我 About Me</a>
+                        <a class="nav-link text-white" href="javascript:void(0)" data-href-id="AboutMe">關於我 About Me</a>
                     </li>
                     <li class="nav-item" id="dropdown_btn">
-                        <a class="nav-link text-white" href="#" data-href-id="Portfolio">作品集 Portfolio</a>
+                        <a class="nav-link text-white" href="javascript:void(0)" data-href-id="Portfolio">作品集 Portfolio</a>
                         <div class="dropdown" style="display: none;">
                             <ul>
                                 <li>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </nav>
-    <div>
+    <div id="skrollr-body">
         <section class="jumbotron d-flex flex-column justify-content-center align-items-center flex-direction-column text-white" id="introduction">
             <div data-0="transform: translateX(-1vw)" data-500="transform: translateX(-21vw)"  >
                 <h1 >GUAN YIN</h1>
@@ -155,6 +155,11 @@
 
 <script type="text/javascript">
     var s = skrollr.init();
+    $("#navTop a").bind("click",function(){
+        var id=$(this).attr("data-href-id");
+        var target_top = $("#"+id).offset().top;
+        s.setScrollTop(target_top,force=true)
+    });
     
 </script>
 
