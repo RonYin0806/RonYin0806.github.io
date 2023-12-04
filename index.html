@@ -156,6 +156,7 @@
 <script type="text/javascript">
     var s = skrollr.init();
     $("#navTop a").bind("click",function(){
+        s.refresh();
         var id=$(this).attr("data-href-id");
         var target_top = $("#"+id).offset().top;
         s.setScrollTop(target_top,force=true)
