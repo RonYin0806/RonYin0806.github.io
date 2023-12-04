@@ -42,7 +42,7 @@ $(function () {
     setTimeout(function(){
         $.ajax({
             type: 'PUT',
-            url: "https://myapi20231202211352.azurewebsites.net/api/IncrementViews/HomePage",
+            url: uri,
             dataType: "json",
             headers: {
                 'Content-Type': 'application/json',
